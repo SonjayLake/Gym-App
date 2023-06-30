@@ -1,15 +1,23 @@
 const Workout = require("../models/workoutModel");
-
+const mongoose = require("mongoose");
 //GET all workout documents
-function getWorkouts(req, res, next) {
-  res.json({ msg: "All workouts returned" });
-  next();
+async function getWorkouts(req, res) {
+  let all = await Workout.find();
+  res.status(200).json(all);
 }
 
 //GET a single workout
-function getWorkout(req, res, next) {
-  res.status(200).json({ msg: "Single workout returned" });
-  next();
+async function getWorkout(req, res) {
+  let { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such workout" });
+  }
+  let workout = await Workout.findById(id);
+  if (!workout) {
+    return res.status(400).json({ error: "Invalid Workout Id" });
+  }
+  console.log(workout);
+  res.status(200).json(workout);
 }
 
 //POST a new workout document
@@ -25,13 +33,13 @@ async function addWorkout(req, res, next) {
 }
 
 //DELETE a single workout
-function deleteWorkout(req, res, next) {
+function deleteWorkout(req, res) {
   res.status(200).json({ msg: "Single workout deleted" });
   next();
 }
 
 //PATCH a single workout
-function updateWorkout(req, res, next) {
+function updateWorkout(req, res) {
   res.status(200).json({ msg: "Single workout updated" });
   next();
 }

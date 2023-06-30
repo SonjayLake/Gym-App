@@ -7,11 +7,12 @@ const {
   updateWorkout,
   deleteWorkout,
 } = require("../controllers/workoutController");
-//GET all workout documents
-router.get("/", getWorkouts);
 
 //GET a single workout
 router.get("/:id", getWorkout);
+
+//GET all workout documents
+router.get("/", getWorkouts);
 
 //POST a new workout document
 router.post("/", addWorkout);
