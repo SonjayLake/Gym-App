@@ -33,15 +33,24 @@ async function addWorkout(req, res, next) {
 }
 
 //DELETE a single workout
-function deleteWorkout(req, res) {
-  res.status(200).json({ msg: "Single workout deleted" });
-  next();
+async function deleteWorkout(req, res) {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ error: "Workout does not exist" });
+  }
+  await Workout.findByIdAndDelete(id);
+  res.status(200).json({ msg: "Workout deleted" });
 }
 
 //PATCH a single workout
-function updateWorkout(req, res) {
-  res.status(200).json({ msg: "Single workout updated" });
-  next();
+async function updateWorkout(req, res) {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ error: "Workout does not exist" });
+  }
+
+  let updated = await Workout.findOneAndUpdate({ _id: id }, { ...req.body });
+  res.status(200).json({ msg: "Workout succesfully updated", updated });
 }
 
 module.exports = {
