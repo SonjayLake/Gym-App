@@ -1,4 +1,5 @@
 const express = require("express");
+const Workout = require("../models/workoutModel");
 
 const router = express.Router();
 
@@ -16,8 +17,14 @@ router.get("/:id", (req, res, next) => {
 
 //POST a new workout document
 router.post("/", (req, res, next) => {
-  res.status(201).json({ msg: "Single workout added" });
-  next();
+  let { title, reps, load } = req.body;
+  try {
+    let newWorkout = Workout({ title, reps, load });
+    res.status(201).json(newWorkout);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ msg: err.message });
+  }
 });
 
 //DELETE a single workout
