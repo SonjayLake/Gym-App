@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 /*layout*/
 
@@ -20,7 +20,7 @@ header {
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 20px 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,6 +33,10 @@ header a {
 
 .pages {
   max-width: 1400px;
-  padding: 100px;
+  padding: 0 100px;
   margin: 0 auto;
+}
+
+.home {
+  font-size: 10px;
 }
