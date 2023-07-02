@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import WorkoutTemplate from "../components/WorkoutTemplate";
+import WorkoutForm from "../components/WorkoutForm";
 
 function Home() {
   const [workouts, setWorkout] = useState(null);
@@ -17,13 +18,14 @@ function Home() {
         });
     };
     getWorkouts();
-  }, []);
+  }, [workouts]);
   return (
     <div className="home">
       {workouts &&
         workouts.map((e) => {
           return <WorkoutTemplate key={e._id} workout={e} />;
         })}
+      <WorkoutForm />
     </div>
   );
 }
