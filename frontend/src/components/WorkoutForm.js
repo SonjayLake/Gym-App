@@ -37,6 +37,7 @@ function WorkoutForm() {
         handleSubmit(e);
       }}
     >
+      <h4>Add a new workout</h4>
       <label htmlFor="title">Exercise name:</label>
       <input
         type="text"
@@ -61,7 +62,7 @@ function WorkoutForm() {
         onChange={(e) => setLoad(e.target.value)}
       ></input>
       <button>Add Workout</button>
-      {error && <div>{error}</div>}
+      {error && <div className="error">{error}</div>}
     </form>
   );
 }
