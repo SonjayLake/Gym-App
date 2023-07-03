@@ -23,12 +23,22 @@ async function getWorkout(req, res) {
 //POST a new workout document
 async function addWorkout(req, res, next) {
   let { title, reps, load } = req.body;
+  let emptyFields = [];
+
   try {
     let newWorkout = await Workout.create({ title, load, reps });
     res.status(201).json(newWorkout);
   } catch (err) {
-    console.error(err);
-    res.status(400).json({ msg: err.message });
+    if (!title) {
+      emptyFields.push("Title");
+    }
+    if (!reps) {
+      emptyFields.push(" Reps");
+    }
+    if (!load) {
+      emptyFields.push(" Load");
+    }
+    res.status(400).json({ error: "Please fill in all fields: ", emptyFields });
   }
 }
 
