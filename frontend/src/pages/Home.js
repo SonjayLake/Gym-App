@@ -1,24 +1,28 @@
-import { useEffect, useState } from "react";
+import { useWorkoutContext } from "../hooks/useWorkoutsContext";
+import { useEffect } from "react";
 import axios from "axios";
+
+//components
 import WorkoutTemplate from "../components/WorkoutTemplate";
 import WorkoutForm from "../components/WorkoutForm";
 
 function Home() {
-  const [workouts, setWorkout] = useState(null);
+  // const [workouts, setWorkout] = useState(null);
+  const { workouts, dispatch } = useWorkoutContext();
 
   useEffect(() => {
     let getWorkouts = async () => {
       await axios
         .get("/api/workouts")
         .then((res) => {
-          setWorkout(res.data);
+          dispatch({ type: "SET_WORKOUTS", payload: res.data });
         })
         .catch((err) => {
           console.error(err);
         });
     };
     getWorkouts();
-  }, [workouts]);
+  }, [dispatch]);
   return (
     <div className="home">
       {workouts &&
