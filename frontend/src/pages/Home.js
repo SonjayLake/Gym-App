@@ -22,7 +22,7 @@ function Home() {
         });
     };
     getWorkouts();
-  }, [dispatch]);
+  }, [dispatch, workouts]);
   return (
     <div className="home">
       {workouts &&

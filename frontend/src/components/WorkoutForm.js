@@ -11,13 +11,6 @@ function WorkoutForm() {
   let [error, setError] = useState(null);
   async function handleSubmit(e) {
     e.preventDefault();
-    let config = {
-      data: {
-        title: title,
-        reps: reps,
-        load: load,
-      },
-    };
 
     let response = await axios
       .post("/api/workouts", { title, reps, load })
