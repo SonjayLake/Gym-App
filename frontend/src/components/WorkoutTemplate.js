@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 function WorkoutTemplate({ workout }) {
   let { dispatch } = useWorkoutContext();
@@ -20,8 +21,10 @@ function WorkoutTemplate({ workout }) {
       <h4>{title}</h4>
       <p>Load (lbs): {load} </p>
       <p>Reps: {reps}</p>
-      <p>{createdAt}</p>
-      <span onClick={handleClick}>delete</span>
+      <p>{formatDistanceToNow(new Date(createdAt), { addSuffix: true })}</p>
+      <span className="material-symbols-outlined" onClick={handleClick}>
+        Delete
+      </span>
     </div>
   );
 }
