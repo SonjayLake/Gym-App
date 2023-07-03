@@ -1,4 +1,5 @@
 # Overview
+  WorkoutApp is a MERN stack application that enables users to effortlessly track and manage their workouts. With an intuitive user interface, users can easily add and delete specific workouts, allowing them to maintain a personalized exercise routine. This app simplifies the process of organizing and monitoring workout progress, helping users stay motivated and achieve their fitness goals.
 
 ## Demo
 
