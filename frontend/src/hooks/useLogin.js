@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 
-export const useSignup = () => {
+export const useLogin = () => {
   let [error, setError] = useState(null);
   let [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
-  const signup = async (email, password) => {
+  const login = async (email, password) => {
     setIsLoading(true);
     setError(null);
     await axios
-      .post("/api/user/signup", { data: { email, password } })
+      .post("/api/user/login", { data: { email, password } })
       .then((res) => {
         let { email, token } = res.data;
         localStorage.setItem("user", JSON.stringify({ email, token }));
@@ -20,9 +20,10 @@ export const useSignup = () => {
         dispatch({ type: "LOGIN", payload: res.data });
       })
       .catch((err) => {
+        console.log(err);
         setIsLoading(false);
         setError(err.response.data.error);
       });
   };
-  return { signup, isLoading, error };
+  return { login, isLoading, error };
 };

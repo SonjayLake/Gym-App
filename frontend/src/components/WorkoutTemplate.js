@@ -7,7 +7,7 @@ function WorkoutTemplate({ workout }) {
   let { title, reps, load, createdAt } = workout;
 
   async function handleClick() {
-    let response = await axios
+    await axios
       .delete(`/api/workouts/` + workout._id)
       .then((res) => {
         dispatch({ type: "DELETE_WORKOUT", payload: res.data });

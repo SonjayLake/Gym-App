@@ -13,7 +13,7 @@ function WorkoutForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let response = await axios
+    await axios
       .post("/api/workouts", { title, reps, load })
       .then((res) => {
         setTitle("");

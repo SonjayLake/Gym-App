@@ -12,7 +12,7 @@ const createToken = function (_id) {
 //login user
 
 async function loginUser(req, res) {
-  let { email, password } = req.body;
+  let { email, password } = req.body.data;
   try {
     let user = await User.login(email, password);
     const token = createToken(user._id);
