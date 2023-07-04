@@ -24,7 +24,7 @@ async function loginUser(req, res) {
 
 //signup user
 async function signupUser(req, res) {
-  let { email, password } = req.body;
+  let { email, password } = req.body.data;
   try {
     //save user to database
     let user = await User.signup(email, password);
