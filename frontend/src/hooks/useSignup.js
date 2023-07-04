@@ -10,7 +10,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
     await axios
-      .post("/api/user/signup", { data: { email, password } })
+      .post("/api/user/signup", { email, password })
       .then((res) => {
         let { email, token } = res.data;
         localStorage.setItem("user", JSON.stringify({ email, token }));

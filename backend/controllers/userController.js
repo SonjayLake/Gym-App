@@ -12,7 +12,7 @@ const createToken = function (_id) {
 //login user
 
 async function loginUser(req, res) {
-  let { email, password } = req.body.data;
+  let { email, password } = req.body;
   try {
     let user = await User.login(email, password);
     const token = createToken(user._id);
@@ -24,7 +24,7 @@ async function loginUser(req, res) {
 
 //signup user
 async function signupUser(req, res) {
-  let { email, password } = req.body.data;
+  let { email, password } = req.body;
   try {
     //save user to database
     let user = await User.signup(email, password);
