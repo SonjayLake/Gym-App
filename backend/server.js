@@ -4,11 +4,13 @@ require("dotenv").config({
 
 const mongoose = require("mongoose");
 const workoutRouter = require("./routes/workouts");
+const userRouter = require("./routes/user");
 const express = require("express");
 
 app = express();
 
 app.use(express.json());
+app.use("/api/user", userRouter);
 app.use("/api/workouts", workoutRouter);
 
 mongoose
