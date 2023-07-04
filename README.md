@@ -119,5 +119,3 @@ the data inputted by users is secure.
 - Twitter - [@Sonjay_Lake](https://twitter.com/Sonjay_Lake)
 
 
-## Acknowledgments
-Inspiration taken from [Sean's videos](https://www.youtube.com/watch?v=-ONUyenGnWw&t=44s) https://www.youtube.com/playlist?list=PL4cUxeGkcC9g8OhpOZxNdhXggFz2lOuCT
