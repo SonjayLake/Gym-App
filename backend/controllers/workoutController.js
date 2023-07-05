@@ -16,7 +16,6 @@ async function getWorkout(req, res) {
   if (!workout) {
     return res.status(400).json({ error: "Invalid Workout Id" });
   }
-  console.log(workout);
   res.status(200).json(workout);
 }
 

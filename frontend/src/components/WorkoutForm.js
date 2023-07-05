@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 function WorkoutForm() {
   let { dispatch } = useWorkoutContext();
 
@@ -9,20 +9,32 @@ function WorkoutForm() {
   let [reps, setReps] = useState("");
   let [load, setLoad] = useState("");
   let [error, setError] = useState(null);
-  let [emptyFields, setEmptyFields] = useState([]);
+  let [emptyFields, setEmptyFields] = useState([""]);
+  let { user } = useAuthContext();
+
   async function handleSubmit(e) {
     e.preventDefault();
-
+    if(!user){
+      setError("You must be logged in");
+      return;
+    }
     await axios
-      .post("/api/workouts", { title, reps, load })
+      .post(
+        "/api/workouts",
+        { title, reps, load },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
       .then((res) => {
         setTitle("");
         setReps("");
         setLoad("");
         dispatch({ type: "CREATE_WORKOUTS", payload: res.data });
         setError(null);
-        setEmptyFields([]);
-        console.log("success");
+        setEmptyFields([""]);
       })
       .catch((err) => {
         setError(err.response.data.error + err.response.data.emptyFields);
@@ -40,7 +52,9 @@ function WorkoutForm() {
       <label htmlFor="title">Exercise name:</label>
       <input
         type="text"
-        className={emptyFields.includes("Title") ? "required" : ""}
+        className={
+          emptyFields ? (emptyFields.includes("Title") ? "required" : "") : ""
+        }
         id="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -51,7 +65,9 @@ function WorkoutForm() {
         type="number"
         id="reps"
         value={reps}
-        className={emptyFields.includes(" Reps") ? "required" : ""}
+        className={
+          emptyFields ? (emptyFields.includes(" Reps") ? "required" : "") : ""
+        }
         onChange={(e) => setReps(e.target.value)}
       ></input>
 
@@ -60,7 +76,9 @@ function WorkoutForm() {
         type="number"
         id="load"
         value={load}
-        className={emptyFields.includes(" Load") ? "required" : ""}
+        className={
+          emptyFields ? (emptyFields.includes(" Load") ? "required" : "") : ""
+        }
         onChange={(e) => setLoad(e.target.value)}
       ></input>
       <button>Add Workout</button>

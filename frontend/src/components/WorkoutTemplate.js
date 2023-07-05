@@ -1,14 +1,21 @@
 import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function WorkoutTemplate({ workout }) {
   let { dispatch } = useWorkoutContext();
   let { title, reps, load, createdAt } = workout;
+  let { user } = useAuthContext();
 
   async function handleClick() {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
     await axios
-      .delete(`/api/workouts/` + workout._id)
+      .delete(`/api/workouts/` + workout._id,config)
       .then((res) => {
         dispatch({ type: "DELETE_WORKOUT", payload: res.data });
       })
