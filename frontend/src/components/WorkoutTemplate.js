@@ -9,6 +9,11 @@ function WorkoutTemplate({ workout }) {
   let { user } = useAuthContext();
 
   async function handleClick() {
+
+    if(!user){
+      return;
+    }
+
     let config = {
       headers: {
         Authorization: `Bearer ${user.token}`
