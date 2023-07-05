@@ -102,12 +102,13 @@ export const workoutsReducer = (state, action) => {
 
 ### Continued development
 
-In the future, I plan to add authentication to this app.
-This would mean allowing users to signup and log in so that
-they can save the added workouts and access them at a later date.
+I recently added authentication and a login/signup
+feature for users. This makes the site more useful,
+as people can save their own custom workouts.
 
-I also plan to incorporate JSON web tokens in order to ensure that
-the data inputted by users is secure.
+In the future, I plan to make the user interface
+more robust and easy on the eyes.
+
 ### Useful resources
 
 - [MDN Docs](https://developer.mozilla.org/en-US/) - The MDN Docs were incredibly useful for information on JavaScript debugging. A classic source.
@@ -116,6 +117,3 @@ the data inputted by users is secure.
 ## Author
 
 - Linkedin - [Sonjay Lake](https://www.linkedin.com/in/sonjay-l-24a4a0126/)
-- Twitter - [@Sonjay_Lake](https://twitter.com/Sonjay_Lake)
-
-
